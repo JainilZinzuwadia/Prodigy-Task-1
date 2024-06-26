@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+	
+</head>
+<body>
+
+    <header class="header">
+	
+        <a href="#" class="logo">
+            <img src="logo.png" alt="">
+        </a>
+	 
+
+        <nav class="navbar">
+            <div id="close" class="fas fa-times"></div>
+
+            <a href="#" class="nav_item">home</a>
+            <a href="#" class="nav_item">about</a>
+            <a href="#" class="nav_item">menu</a>
+            <a href="#" class="nav_item">contact</a>
+
+        </nav>
+
+        <div id="menu" class="fas fa-bars"></div>
+
+    </header>
+
+    <section class="home">
+
+        <div class="content">
+            <h1 class="title">fresh <span>coffee</span> in the <span>morning</span> </h1>
+            <p class="description">Great mornings start with the heavenly aroma of coffee..!.</p>
+            <a href="#" class="btn">get started</a>
+        </div>
+
+        <div class="image">
+            <img src="home.png" alt="" data-speed="-3" class="move">
+        </div>
+
+    </section>
+
+    <script>
+
+let navbar = document.querySelector('.header .navbar')
+
+document.querySelector('#menu').onclick = () =>{
+  navbar.classList.add('active');
+}
+
+document.querySelector('#close').onclick = () =>{
+  navbar.classList.remove('active');
+}
+
+
+// mousemove home img
+
+document.addEventListener('mousemove', move);
+function move(e){
+  this.querySelectorAll('.move').forEach(layer =>{
+    const speed = layer.getAttribute('data-speed')
+
+    const x = (window.innerWidth - e.pageX*speed)/120
+    const y = (window.innerWidth - e.pageY*speed)/120
+
+    layer.style.transform = `translateX(${x}px) translateY(${y}px)`
+
+  })
+}
+
+
+
+gsap.from('.logo', {opacity: 0, duration: 1, delay: 2, y:10})
+gsap.from('.navbar .nav_item', {opacity: 0, duration: 1, delay: 2.1, y:30, stagger: 0.2})
+
+gsap.from('.title', {opacity: 0, duration: 1, delay: 1.6, y:30})
+gsap.from('.description', {opacity: 0, duration: 1, delay: 1.8, y:30})
+gsap.from('.btn', {opacity: 0, duration: 1, delay: 2.1, y:30})
+gsap.from('.image', {opacity: 0, duration: 1, delay: 2.6, y:30})
+</script>
+</body>
+</html>
